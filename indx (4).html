@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EAVONEX • Anime World</title>
+<style>
+:root{--cyan:#00eaff;--purple:#9b5cff;--bg:#080a14;--card:#12172a;--text:#eef2ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#1b1740,#080a14 55%);color:var(--text);font-family:system-ui,'Noto Sans Bengali',sans-serif}
+header{padding:22px;text-align:center;border-bottom:1px solid #ffffff18}h1{margin:0;color:var(--cyan);letter-spacing:4px;text-shadow:0 0 18px #00eaff66}header p{color:#aab4d8;margin:8px}
+main{max-width:950px;margin:28px auto;padding:0 16px}.panel{background:#12172add;border:1px solid #343b65;border-radius:18px;padding:22px;box-shadow:0 0 35px #6d43ff18;margin-bottom:22px}
+h2{color:#c5a9ff;margin-top:0}.formgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px}
+label{display:block;font-size:14px;color:#b9c5e8}input,select{width:100%;margin-top:6px;padding:12px;border-radius:10px;border:1px solid #38416b;background:#080d20;color:white;font-size:15px}
+button{border:0;border-radius:11px;padding:12px 18px;background:linear-gradient(100deg,var(--cyan),var(--purple));color:#06101a;font-weight:800;cursor:pointer;margin-top:15px}
+button:hover{filter:brightness(1.12)}.note{font-size:13px;color:#9da9ce;line-height:1.6}.hidden{display:none}
+.profile{display:flex;gap:16px;align-items:center;flex-wrap:wrap}.avatar{width:75px;height:75px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--cyan),var(--purple));font-size:30px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}.tile{padding:16px;border-radius:14px;background:#0b1023;border:1px solid #343b65}.tile h3{margin:0 0 8px;color:#80efff}.tile a{color:#c6a8ff}.daily{padding:14px;background:#0b1023;border-radius:12px;border-left:3px solid var(--cyan)}
+footer{text-align:center;color:#7885ac;padding:25px}
+</style>
+</head>
+<body>
+<header><h1>EAVONEX</h1><p>ANIME • FRIENDS • YOUR WORLD ✦</p></header>
+<main>
+<section class="panel" id="join">
+<h2>✦ Join in Group</h2>
+<p>তোমার তথ্য দিয়ে EAVONEX Anime Community-তে একটি প্রোফাইল তৈরি করো।</p>
+<form id="profileForm">
+<div class="formgrid">
+<label>নাম<input name="name" required maxlength="50" placeholder="তোমার নাম"></label>
+<label>Nick name<input name="nick" required maxlength="30" placeholder="তোমার Nick name"></label>
+<label>স্কুলের নাম<input name="school" required maxlength="100" placeholder="স্কুলের নাম"></label>
+<label>Gender<select name="gender" required><option value="">নির্বাচন করো</option><option>Male</option><option>Female</option><option>Other</option><option>Prefer not to say</option></select></label>
+<label>বয়স<select name="age" required><option value="">বয়স বেছে নাও</option><option>Under 13</option><option>13–15</option><option>16–17</option><option>18+</option></select></label>
+<label>Best friend-এর নাম<input name="friend" maxlength="50" placeholder="Best friend (ঐচ্ছিক)"></label>
+<label>প্রিয় রং<input name="color" required placeholder="যেমন: Blue"></label>
+</div>
+<button type="submit">Create Profile ✨</button>
+<p class="note">তথ্য দেওয়ার আগে অভিভাবকের অনুমতি নাও। এখানে কোনো পাসওয়ার্ড বা ব্যক্তিগত যোগাযোগের তথ্য দিও না।</p>
+</form>
+</section>
+<section class="panel hidden" id="profile">
+<div class="profile"><div class="avatar">✦</div><div><h2 id="welcome">Welcome!</h2><p id="profileInfo"></p></div></div>
+<button id="edit">Edit Profile</button>
+</section>
+<section class="panel hidden" id="anime">
+<h2>🍿 Anime Corner</h2>
+<p>নিরাপদ ও অফিসিয়াল Anime দেখার জন্য নিচের লিংকগুলো ব্যবহার করো। অঞ্চলভেদে কনটেন্ট ও বয়স-রেটিং আলাদা হতে পারে।</p>
+<div class="tiles">
+<div class="tile"><h3>Crunchyroll</h3><p>Anime streaming</p><a href="https://www.crunchyroll.com/" target="_blank" rel="noopener">Official website ↗</a></div>
+<div class="tile"><h3>Netflix Anime</h3><p>Anime collection</p><a href="https://www.netflix.com/" target="_blank" rel="noopener">Official website ↗</a></div>
+<div class="tile"><h3>Anime News Network</h3><p>Anime news & info</p><a href="https://www.animenewsnetwork.com/" target="_blank" rel="noopener">Official website ↗</a></div>
+</div>
+</section>
+<section class="panel"><h2>📅 Daily Anime</h2><div class="daily" id="daily">আজকের Anime Corner ✨<br>নতুন episode ও official updates দেখতে উপরের লিংকগুলো খুলো।</div></section>
+</main>
+<footer>EAVONEX © Anime World</footer>
+<script>
+const form=document.getElementById('profileForm'),join=document.getElementById('join'),profile=document.getElementById('profile'),anime=document.getElementById('anime');
+function showProfile(data){
+ document.getElementById('welcome').textContent='Welcome, '+data.nick+'!';
+ document.getElementById('profileInfo').textContent=`${data.name} • ${data.school} • ${data.gender} • ${data.age} • Best friend: ${data.friend||'—'} • Favorite color: ${data.color}`;
+ profile.classList.remove('hidden');anime.classList.remove('hidden');join.classList.add('hidden');
+}
+form.addEventListener('submit',e=>{e.preventDefault();const d=Object.fromEntries(new FormData(form));showProfile(d);
+ // Static GitHub Pages cannot send email or securely store profiles.
+ alert('Profile তৈরি হয়েছে! এটি শুধু এই ব্রাউজারে দেখানো হচ্ছে। Email পাঠাতে Backend লাগবে।');});
+document.getElementById('edit').onclick=()=>{profile.classList.add('hidden');anime.classList.add('hidden');join.classList.remove('hidden')};
+</script>
+</body></html>
